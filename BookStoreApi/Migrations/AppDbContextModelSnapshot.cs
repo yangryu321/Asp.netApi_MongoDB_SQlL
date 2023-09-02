@@ -21,7 +21,7 @@ namespace BookStoreApi.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("BookStoreApi.Models.Book", b =>
+            modelBuilder.Entity("BookStoreApi.Models.SqlBook", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -37,11 +37,8 @@ namespace BookStoreApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Catagory")
+                    b.Property<string>("Category")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MongoId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")

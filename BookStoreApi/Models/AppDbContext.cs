@@ -10,7 +10,7 @@ namespace BookStoreApi.Models
             
         }
 
-        public DbSet<Book> Books { get; set; }
+        public DbSet<SqlBook> Books { get; set; }
 
     }
 }

@@ -5,19 +5,27 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace BookStoreApi.Models
 {
-    public class Book
-    {
-        [Key] // If using Entity Framework for SQL
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] // Auto-incrementing primary key
-        public int Id { get; set; }
+   public class SqlBook
+{
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int Id { get; set; }
+    public string BookName { get; set; }
+    public decimal Price { get; set; }
+    public string Category { get; set; }
+    public string Author { get; set; }
+}
 
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string? MongoId { get; set; }
-        public string BookName { get; set; } = null!;
-        public decimal Price { get; set; }
-        public string Catagory { get; set; } = null!;
-        public string Author { get; set; } = null!;
-    }
+// MongoDB Data Model
+public class MongoBook
+{
+    [BsonId]
+    [BsonRepresentation(BsonType.ObjectId)]
+    public string Id { get; set; }
+    public string BookName { get; set; }
+    public decimal Price { get; set; }
+    public string Category { get; set; }
+    public string Author { get; set; }
+}
 
 }

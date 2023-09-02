@@ -1,5 +1,6 @@
 using System;
 using BookStoreApi.Models;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace BookStoreApi.Services
 {
@@ -11,10 +12,11 @@ namespace BookStoreApi.Services
         {
             this.dbContext = dbContext;
         }
-        public Book Create(Book newBook)
+        public int Create(SqlBook newBook)
         {
             dbContext.Books.Add(newBook);
-            return newBook;
+            dbContext.SaveChanges();
+            return newBook.Id;
         }
 
         public int Delete(int id)
@@ -25,19 +27,23 @@ namespace BookStoreApi.Services
             return id;
         }
 
-        public IEnumerable<Book> Get()
+        public IEnumerable<SqlBook> Get()
         {
-            throw new NotImplementedException();
+            return dbContext.Books.ToList();
         }
 
-        public Book Get(int id)
+        public SqlBook Get(int id)
         {
-            throw new NotImplementedException();
+            return dbContext.Books.Find(id);
         }
 
-        public Book Update(int id, Book UpdatedBook)
+        public SqlBook Update(int id, SqlBook UpdatedBook)
         {
-            throw new NotImplementedException();
+            
+              dbContext.Update(UpdatedBook);
+              dbContext.SaveChanges();
+
+              return UpdatedBook;
         }
     }
 
