@@ -39,11 +39,21 @@ namespace BookStoreApi.Services
 
         public SqlBook Update(int id, SqlBook UpdatedBook)
         {
-            
-              dbContext.Update(UpdatedBook);
-              dbContext.SaveChanges();
+            var existingBook = dbContext.Books.Find(id);
 
-              return UpdatedBook;
+            if (existingBook == null)
+            {
+                return null;
+            }
+
+            existingBook.BookName = UpdatedBook.BookName;
+            existingBook.Price = UpdatedBook.Price;
+            existingBook.Category = UpdatedBook.Category;
+            existingBook.Author = UpdatedBook.Author;
+            
+            dbContext.SaveChanges();
+
+            return UpdatedBook;
         }
     }
 
