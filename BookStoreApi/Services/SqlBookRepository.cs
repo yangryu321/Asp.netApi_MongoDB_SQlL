@@ -12,7 +12,7 @@ namespace BookStoreApi.Services
         {
             this.dbContext = dbContext;
         }
-        public int Create(SqlBook newBook)
+        public object Create(SqlBook newBook)
         {
             dbContext.Books.Add(newBook);
             dbContext.SaveChanges();

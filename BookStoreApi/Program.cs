@@ -15,7 +15,10 @@ builder.Services.AddDbContext<AppDbContext>(options=>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MyConnectionString"));
 });
 
-builder.Services.AddScoped<IBookRepository,SqlBookRepository>();
+builder.Services.AddScoped<IBookRepository,MongoBookRepository>();
+
+builder.Services.Configure<BookStoreDatabaseSettings>(
+    builder.Configuration.GetSection("BookStoreDatabase"));
 
 var app = builder.Build();
 
