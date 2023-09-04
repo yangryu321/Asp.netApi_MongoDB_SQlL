@@ -39,22 +39,34 @@ namespace BookStoreApi.Services
 
         public int Delete(int id)
         {
-            throw new NotImplementedException();
+            _booksCollection.DeleteOne(x=>x.Id == id.ToString());
+            return id;
         }
 
-        public IEnumerable<SqlBook> Get()
+        public IEnumerable<object> Get()
         {
-            throw new NotImplementedException();
+            return _booksCollection.Find(_=>true).ToList();
         }
 
-        public SqlBook Get(int id)
+        public object Get(int id)
         {
-            throw new NotImplementedException();
+            return _booksCollection.Find(x=>x.Id == id.ToString());
         }
 
         public SqlBook Update(int id, SqlBook UpdatedBook)
         {
-            throw new NotImplementedException();
+            var MongoBook = new MongoBook()
+            {
+                //Id = _booksCollection.max,
+                BookName = UpdatedBook.BookName,
+                Price = UpdatedBook.Price,
+                Category = UpdatedBook.Category,
+                Author = UpdatedBook.Author
+
+            };
+
+            _booksCollection.ReplaceOne(x=>x.BookName == UpdatedBook.BookName, MongoBook);
+            return UpdatedBook;
         }
     }
 

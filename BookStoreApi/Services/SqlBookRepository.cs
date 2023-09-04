@@ -27,12 +27,12 @@ namespace BookStoreApi.Services
             return id;
         }
 
-        public IEnumerable<SqlBook> Get()
+        public IEnumerable<object> Get()
         {
             return dbContext.Books.ToList();
         }
 
-        public SqlBook Get(int id)
+        public object Get(int id)
         {
             return dbContext.Books.Find(id);
         }
